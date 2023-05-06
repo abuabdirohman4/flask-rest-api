@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, Markup
 
 app = Flask(__name__)
 
@@ -24,14 +24,12 @@ def get_surah(surah_number):
 
 @app.route('/API/save_project/', methods=['post'])
 def save_project():
-    # request_data = request.get_json()
-    # request_data = request
-    # request_data = request.json[0]
-    # print(request_data[0]['id'])
-    # print(request_data)
-    print(request)
-    return "success"
-    # return request_data
+    request_data = request.get_json()
+    # print(request_data['id'])
+    request_data = request_data['size']
+    return Markup(request_data)
+    # return "success"
+    
 
-# if __name__ == '__main__':
-#     app.run(port=5010, debug=True)
+if __name__ == '__main__':
+    app.run(port=5010, debug=True)
